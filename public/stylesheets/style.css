@@ -1,0 +1,297 @@
+
+
+* {
+  margin:0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Karla', sans-serif;
+  font-size:10px;
+}
+
+
+.container {
+  max-width: 95%;
+  margin:0 auto;
+}
+
+.row {
+  width:100%;
+}
+
+
+.h2 {
+  font-size:2.4rem;
+  color:757575;
+  font-weight:300;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.h4-bold {
+  font-size:1.8rem;
+  font-weight:500;
+}
+
+.h4 {
+  font-size:1.8rem;
+  font-weight:400;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.4rem;
+  color:#777777;
+}
+
+.placeholder {
+  color:#ABB0B6;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  float:right;
+}
+
+.left {
+  float:left;
+}
+
+
+/* Form */
+
+.block {
+  border-bottom: 2px solid #D4D9DE;
+}
+
+input[type="number"] {
+  -webkit-appearance: none;
+  background: none;
+  border:none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-family: 'Karla', sans-serif;
+  min-width: 65%;
+}
+
+#submit {
+  background-color: #FF6A9C;
+  -webkit-appearance: none;
+  border-color:#FF6A9C;
+  border-style: solid;
+  border-radius: 3px;
+  color:white;
+  font-size: 1.4rem;
+  font-family: 'Karla', sans-serif;
+  cursor: pointer;
+  /*box-shadow: 0 0 5px 0 #ffb5ce, 0 0 15px 0 #FF6A9C;*/
+  float:right;
+  padding: 0.5rem;
+}
+
+#submit > img {
+  vertical-align: middle;
+  padding-left:0.75rem;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:focus{
+  outline: none;
+}
+
+label {
+  display:block;
+  font-size:1.8rem;
+  color:white;
+  font-weight:300;
+  margin-bottom:2rem;
+}
+
+/* Results Screen */
+
+/* Header */
+
+.results-screen {
+  background-color: #F2F5F8;
+}
+
+
+.header {
+  width: 100%;
+  height: 76px;
+  position: fixed;
+  padding: 16px 16px 0 10px;
+  top: 0;
+  padding: 16px 16px 0 10px;
+  z-index: -1000;
+ }
+
+.header .placeholder,
+.header button {
+  display: inline-block;
+}
+
+#loader {
+  position:absolute;
+  top:45%;
+  left:45%;
+  transform:translate(-50%, -50%)
+}
+
+
+/* Results */
+
+#empty,
+#no-connection,
+#no-location {
+  padding-top: 12rem;
+  text-align: center;
+}
+
+#empty img,
+#no-connection img {
+  position: relative;
+  left:2rem;
+}
+
+#no-location img {
+  position: relative;
+  bottom:2rem;
+}
+
+#empty h4,
+#no-connection h4,
+#no-location h4 {
+  color:#ABB0B6;
+}
+
+#results {
+  margin-top: 12rem;
+  background-color: #F2F5F8;
+  z-index: 1000;
+}
+
+.restaurant {
+  width:100%;
+  background-color: white;
+  padding:1rem 2rem 1rem 2rem;
+  margin-bottom:2rem;
+  border-radius: 5px;
+  border:1px solid #DAE3EC
+  /*box-shadow: 0 5px 14px 0 #DAE3EC, 0 -3px 20px 0 #DAE3EC;*/
+}
+
+.thumb {
+  height: 8rem;
+  width: 8rem;
+  object-fit: cover;
+  border-radius: 5rem;
+  background-color: #d9e3ec;
+  border-style:none;
+}
+
+.clearfix {
+  overflow:auto;
+}
+
+
+.directions {
+  display:block;
+  font-weight: 400;
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  padding-right:0.5rem;
+  padding-left:1rem;
+  background-color: #F2F5F8;
+  border: 1px solid #F2F5F8;
+  color:#8a8a8a;
+  border-radius:3px;
+  max-width:14rem;
+
+}
+
+.bubble {
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  padding-right:1rem;
+  padding-left:1rem;
+  border:2px solid #ececec;
+  border-radius:30px;
+  margin-bottom: 1rem;
+}
+
+.bubble img {
+  height:14px;
+}
+
+.bubble img,
+.bubble p {
+  display: inline-block;
+  margin-right:0.5rem;
+}
+
+.info {
+  padding-left:2rem;
+}
+
+
+/* animations */
+@-webkit-keyframes loadSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+keyframes loadSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.loadSpin {
+  -webkit-animation: loadSpin 1s infinite linear;
+  animation: loadSpin 1s infinite linear;
+}
+view rawstyle.css hosted with ❤ by GitHub
