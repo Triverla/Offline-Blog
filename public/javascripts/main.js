@@ -1,4 +1,4 @@
-   /* eslint-env browser */
+
    window.addEventListener('DOMContentLoaded', function () {
     navigator.serviceWorker.register('/sw.js')
     .then(function(registration) {
@@ -38,24 +38,7 @@
       function connectionFailNone() {
         document.getElementById('no-connection').style.display = 'none';
       }
-
-    // Stale-while-revalidate
-
-    // Load patterns:
-    // cache - display - network - display - END
-    // no cache - network - display - END
-
-    // Tests:
-    // - Server error
-    // - No cache with network
-    // - No cache without network
-    // - Cache
-    // - Cache then update
-
-    // Serve from cache or else network. When serving from cache,
-    // fetch the newest content from the network to update the
-    // content on screen and then revalidate the cache.
-    // This function has side effects.
+      
     var handlePageState = function (contentId, options) {
         var url = getContentUrl(contentId);
         var networkPromise = fetch(url);
