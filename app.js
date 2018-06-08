@@ -9,6 +9,8 @@ var exphbs  = require('express-handlebars');
 var request = require('request');
 
 var path = require('path');
+var idb = require('idb');
+var promise = require('es6-promise');
 
 var index = require('./routes/index');
 var users = require('./routes/users');

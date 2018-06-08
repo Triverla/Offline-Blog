@@ -3,17 +3,18 @@ var urlsToCache_ = [
     '/stylesheets/style.css',
     '/stylesheets/app.min.css',
     '/stylesheets/jquery.min.js',
-    '/javascripts/main.js'
+    '/javascripts/main.js',
+    '/images/avatar.png'
   ];
   
-  var version = 'v1';
+  var version = 'v2.0';
   
   self.addEventListener('install', function(event) {
-    console.log('[ServiceWorker] Installed version', version);
+    console.log('ServiceWorker Installed: version', version);
     event.waitUntil(
       caches.open(version)
         .then(function(cache) {
-        console.log("opened cache");
+        console.log("cache opened");
         return cache.addAll(urlsToCache_);
       })
     );
@@ -45,3 +46,8 @@ var urlsToCache_ = [
       })
     );
   });
+  self.addEventListener('message', function(event) {
+    if (event.data.action === 'skipWaiting') {
+      self.skipWaiting();
+    }
+  });///

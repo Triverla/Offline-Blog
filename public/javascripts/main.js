@@ -1,4 +1,4 @@
-
+   /* eslint-env browser */
    window.addEventListener('DOMContentLoaded', function () {
     navigator.serviceWorker.register('/sw.js')
     .then(function(registration) {
@@ -23,29 +23,18 @@
     };
 
     var updateContent = function (options) {
-        console.log('Render: from ' + options.source);
+        console.log('Posts rendered from ' + options.source);
         var contentElement = document.querySelector('#blog-content');
         contentElement.innerHTML = '';
         contentElement.appendChild(options.fragment);
     };
-
-    function connectionFail() {
-        loaderNone();
-        document.getElementById('lat').innerHTML = "Bad news! We need the internet";
-        document.getElementById('no-connection').style.display = 'block';
-      }
-      
-      function connectionFailNone() {
-        document.getElementById('no-connection').style.display = 'none';
-      }
-      
     var handlePageState = function (contentId, options) {
         var url = getContentUrl(contentId);
         var networkPromise = fetch(url);
         var cachePromise = caches.match(url);
 
         if (options.shouldCache) {
-            console.log('Cache: update');
+            console.log('Cache updated');
             networkPromise.then(function (networkResponse) {
                 return caches.open('content')
                     .then(function (cache) { return cache.put(url, networkResponse.clone()); });
@@ -98,12 +87,19 @@
         return Promise.all(articles.map(function (article) {
             return isContentCached('articles/' + article.id).then(function (isCached) {
                 return (
-                    '<li>' +
-                        '<h2><a href="/articles/' + article.id + '">' + article.title + '</a></h2>' +
-                        (isCached ? '<p><strong>Available offline</strong></p>' : '') +
-                        '<p>' + new Date(article.date).toDateString() + '</p>' +
-                        article.body +
-                    '</li>'
+                    '<div class="box box-success">' +
+                    '<div class="box-body chat" id="chat-box">'+
+                   
+                    '<h2><a class="lead" href="/articles/' + article.id + '">' + article.title + '</a></h2>' +
+                    '<div class="item">'+
+                    '<img src="images/avatar.png" alt="user image" class="offline">'+
+                    '<p class="message"><a href="#" class="name">'+
+                    '<small class="text-muted pull-right"><i class="fa fa-clock-o"></i>' + new Date(article.date).toDateString() + '</small>' + article.author +
+                    '</a>' +
+                    article.body + '</p>' +
+                    '</div>'+             
+                    '</div>'+
+                    '</div>'
                 );
             });
         })).then(function (articleLiNodes) {
@@ -115,12 +111,12 @@
         var contentId = 'articles/' + article.id;
         return isContentCached(contentId).then(function (isCached) {
             var fragment = fragmentFromString(
-                '<label class="text-info"><input type="checkbox" ' + (isCached ? 'checked' : '') + '> Read offline</label>' +
+                '<label><input type="checkbox" ' + (isCached ? 'checked' : '') + '> Read offline</label>' +
                 '<h2><a href="/articles/' + article.id + '">' + article.title + '</a></h2>' +
                 '<p>' + new Date(article.date).toDateString() + '</p>' +
                 article.body
             );
-
+        
             var cacheCheckboxElement = fragment.querySelector('input');
             cacheCheckboxElement.addEventListener('change', function (event) {
                 return caches.open('content').then(function (cache) {

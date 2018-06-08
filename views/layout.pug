@@ -12,19 +12,36 @@ html
 
     link(rel='stylesheet', href='/stylesheets/app.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.css')
+    link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.min.css')
    
     
   body.hold-transition.skin-blue.layout-top-nav
    include header
-   
-   block content
-
-
-
-
-   include footer
+   .container
+    .col-md-8
+      block content
+    .col-md-4
+      .container-fluid
+        .panel
+        .panel-heading 
+          .h3 Top Stories
+        .panel-body
+          .h3 Our Stories for today
+          .p Frnds join me and celebrate this friend of me, my paddy,he can joke for Africa at the same time he can job eh,
+          .p Dear wish u many more years to celebrate, more money in ur acct so that u will b buying zobo for me in sch lol.....
+          .p Happy birthday!
+        .panel-footer
+          .p.muted Author: benaiah
+  
+  include footer
 
     script(src='/stylesheets/jquery.min.js')
     script(src='/javascripts/main.js')
     script(src='/stylesheets/bootstrap/js/bootstrap.min.js')
+    script(src="/javascripts/idb.js")
+    script(src="/javascripts/idb-test/index.js")
+    
+
+
+
+

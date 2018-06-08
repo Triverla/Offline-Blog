@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "babel": "nodemon app.js --exec babel-node --presets env",
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "es6-promise": "^4.2.4",
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
     "morgan": "~1.9.0",
@@ -19,7 +22,11 @@
   },
   "description": "a simple blog app",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "idb": "^2.1.2"
+  },
   "repository": {
     "type": "git",
     "url": "Triverla"
