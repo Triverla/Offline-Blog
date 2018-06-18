@@ -1,18 +1,16 @@
-.wrapper
- header.main-header
+header.main-header
   nav.navbar.navbar-static-top
    
     div.navbar-header
      a.navbar-brand Cranium
-     button.navbar-toggle.collapse(type="button" data-toggle="collapse" data-target = "#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
-      span.sr-only Toggle Navigation
-      i.fa.fa-bars
+     button.navbar-toggle(type="button"  style="height: auto" data-toggle="collapse" data-target = "#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
+       i.fa.fa-bars 
     
-    div#navbar-collapse.collapse.navbar-collapse
+    #navbar-collapse.collapse.navbar-collapse
      ul.nav.navbar-nav
       li
-       a Home
+       a(href="/") Home
       li
-       a About
+       a(href="/about") About
       li
-       a Contact Us
+       a(href="/contactus") Contact Us

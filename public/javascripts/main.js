@@ -1,4 +1,8 @@
    /* eslint-env browser */
+  
+// This works on all devices/browsers, and uses IndexedDBShim as a final fallback 
+var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
    window.addEventListener('DOMContentLoaded', function () {
     navigator.serviceWorker.register('/sw.js')
     .then(function(registration) {
@@ -34,7 +38,7 @@
         var cachePromise = caches.match(url);
 
         if (options.shouldCache) {
-            console.log('Cache updated');
+            console.log('Cache update');
             networkPromise.then(function (networkResponse) {
                 return caches.open('content')
                     .then(function (cache) { return cache.put(url, networkResponse.clone()); });
@@ -92,7 +96,7 @@
                    
                     '<h2><a class="lead" href="/articles/' + article.id + '">' + article.title + '</a></h2>' +
                     '<div class="item">'+
-                    '<img src="images/avatar.png" alt="user image" class="offline">'+
+                    '<img src="'+article.avatar +'" alt="user image" class="offline">'+
                     '<p class="message"><a href="#" class="name">'+
                     '<small class="text-muted pull-right"><i class="fa fa-clock-o"></i>' + new Date(article.date).toDateString() + '</small>' + article.author +
                     '</a>' +
@@ -111,11 +115,34 @@
         var contentId = 'articles/' + article.id;
         return isContentCached(contentId).then(function (isCached) {
             var fragment = fragmentFromString(
-                '<label><input type="checkbox" ' + (isCached ? 'checked' : '') + '> Read offline</label>' +
+                '<label class="text-blue"><input type="checkbox" ' + (isCached ? 'checked' : '') + '> Read offline</label>' +
+                '<div class="post">'+
                 '<h2><a href="/articles/' + article.id + '">' + article.title + '</a></h2>' +
-                '<p>' + new Date(article.date).toDateString() + '</p>' +
-                article.body
+                  '<div class="user-block">'+
+                  '<img src="/'+ article.avatar +'" alt="user image" class="offline">'+
+                        '<span class="username">'+
+                          '<a href="#">'+ article.author +'</a>'+
+                          '<a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>'+
+                        '</span>'+
+                    '<span class="description">'+ new Date(article.date).toDateString() + '</span>'+
+                  '</div>'+
+                  '<p>'+
+                  article.body +
+                  '</p>' +
+                  '<ul class="list-inline">'+
+                    '<li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>'+
+                    '<li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>'+
+                    '</li>'+
+                    '<li class="pull-right">' +
+                      '<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments'+
+                        '(5)</a></li>'+
+                  '</ul>'+
+
+                  '<input class="form-control input-sm" type="text" placeholder="Type a comment">'+
+                '</div>'
             );
+
+            
         
             var cacheCheckboxElement = fragment.querySelector('input');
             cacheCheckboxElement.addEventListener('change', function (event) {
@@ -161,4 +188,3 @@
         });
     }
 });
-

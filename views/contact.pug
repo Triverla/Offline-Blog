@@ -1,0 +1,29 @@
+extends layout
+
+block content
+ .col-md-8
+    .panel
+    .panel-heading 
+    h3.text-center.text-blue Contact Us
+    p Please fill the form below to contact us
+    .panel-body
+        form(action="" class="form-group")
+        label(for="name" class="text-blue") Name
+        input(type="text" placeholder="Name" name="name" class="form-control")
+        label(for="email" class="text-blue") Email Address
+        input(type="text" placeholder="youremail@mail.com" name="name" class="form-control")
+        label(for="Title" class="text-blue") Title
+        input(type="text" placeholder="Thank You Message" name="name" class="form-control")
+        label(for="message" class="text-blue") Message
+        textarea(name="message", cols="40", rows="5")
+    .panel-footer
+        button(name="submit" class="btn btn-lg btn-primary right") Send
+ .col-md-4
+  h2 Our Address
+  p 23A Saints avenue, off lan-Graga District PA Silicon Valley
+  p 
+   b Phone:&nbsp;
+   i +234 456 7899 9990
+  p 
+   b Email:&nbsp;
+   i info@cranium.com
